@@ -17,7 +17,6 @@
 ### Association
 - has_many :items
 - has_many :purchases
-- has_one :order
 
 ## Itemsテーブル
 
@@ -26,35 +25,18 @@
 | id                  | bigint     | null: false, primary key          |
 | name                | string     | null: false                       |
 | description         | text       | null: false                       |
-| category_id         | bigint     |                                   |
-| condition_id        | bigint     |                                   |
-| shipping_fee_id     | bigint     |                                   |
-| shipping_day_id     | bigint     |                                   |
-| region_id           | bigint     |                                   |
-| user_id             | bigint     | foreign key: true                 |
+| category_id         | integer    | null: false                       |
+| condition_id        | integer    | null: false                       |
+| shipping_fee_id     | integer    | null: false                       |
+| shipping_day_id     | integer    | null: false                       |
+| region_id           | integer    | null: false                       |
+| user_id             | references | null: false, foreign key: true    |
 | price               | integer    | null: false                       |
-| shipping_address_id | bigint     |                                   |
-| shipping_phone      | bigint     |                                   |
+
 
 ### Association
-- belongs_to :category
 - belongs_to :user
 - has_one :purchase
-- has_one :order
-- belongs_to :region
-- belongs_to :condition
-- belongs_to :shipping_fee
-- belongs_to :shipping_day
-
-## Categoriesテーブル
-
-| Column          | Type    | Options                           |
-|-----------------|---------|-----------------------------------|
-| id              | bigint  | null: false, primary key          |
-| name            | integer | null: false                       |
-
-### Association
-- has_many :items
 
 ## Regionsテーブル
 
@@ -67,47 +49,13 @@
 - has_many :item
 - has_many :order
 
-
-## Conditionsテーブル
-
-| Column          | Type    | Options                           |
-|-----------------|---------|-----------------------------------|
-| id              | bigint  | null: false, primary key          |
-| condition       | integer | null: false                       |
-
-### Association
-- has_many :item
-
-
-## Shipping_feesテーブル
-
-| Column          | Type    | Options                           |
-|-----------------|---------|-----------------------------------|
-| id              | bigint  | null: false, primary key          |
-| shipping_fee    | integer | null: false                       |
-
-### Association
-- has_many :item
-
-
-## Shipping_daysテーブル
-
-| Column          | Type    | Options                           |
-|-----------------|---------|-----------------------------------|
-| id              | bigint  | null: false, primary key          |
-| shipping_day    | integer | null: false                       |
-
-### Association
-- has_many :item
-
-
 ## Purchasesテーブル
 
-| Column          | Type   | Options                           |
-|-----------------|--------|-----------------------------------|
-| id              | bigint | null: false, primary key          |
-| user            | bigint | null: false, foreign key: true    |
-| item            | bigint | null: false, foreign key: true    |
+| Column          | Type       | Options                           |
+|-----------------|------------|-----------------------------------|
+| id              | bigint     | null: false, primary key          |
+| user            | references | null: false, foreign key: true    |
+| item            | references | null: false, foreign key: true    |
 
 ### Association
 - belongs_to :user
@@ -119,16 +67,14 @@
 | Column              | Type       | Options                           |
 |---------------------|------------|-----------------------------------|
 | id                  | bigint     | null: false, primary key          |
-| user                | bigint     | null: false, foreign key: true    |
-| item                | bigint     | null: false, foreign key: true    |
-| post_code           | bigint     | null: false,                      |
-| region_id           | bigint     | null: false,                      |
-| city                | bigint     | null: false,                      |
+| user_id             | bigint     | null: false, foreign key: true    |
+| item_id             | bigint     | null: false, foreign key: true    |
+| post_code           | string     | null: false,                      |
+| region_id           | integer    | null: false,                      |
+| city                | string     | null: false,                      |
 | street_address      | string     | null: false,                      |
 | building_name       | string     |                                   |
 | phone_number        | string     | null: false,                      |
 
 ### Association
-- belongs_to :item
 - belongs_to :purchase
-- belongs_to :region
