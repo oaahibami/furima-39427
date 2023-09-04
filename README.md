@@ -4,7 +4,6 @@
 
 | Column             | Type   | Options                           |
 |--------------------|--------|-----------------------------------|
-| id                 | bigint | null: false, primary key          |
 | nickname           | string | null: false                       |
 | email              | string | null: false, unique: true         |
 | encrypted_password | string | null: false                       |
@@ -22,14 +21,13 @@
 
 | Column              | Type       | Options                           |
 |---------------------|------------|-----------------------------------|
-| id                  | bigint     | null: false, primary key          |
 | name                | string     | null: false                       |
 | description         | text       | null: false                       |
-| category            | integer    | null: false                       |
-| condition           | integer    | null: false                       |
+| category_id         | integer    | null: false                       |
+| condition_id        | integer    | null: false                       |
 | shipping_fee_id     | integer    | null: false                       |
 | shipping_day_id     | integer    | null: false                       |
-| region              | integer    | null: false                       |
+| region_id           | integer    | null: false                       |
 | user                | references | null: false, foreign key: true    |
 | price               | integer    | null: false                       |
 
@@ -42,7 +40,6 @@
 
 | Column          | Type       | Options                           |
 |-----------------|------------|-----------------------------------|
-| id              | bigint     | null: false, primary key          |
 | user            | references | null: false, foreign key: true    |
 | item            | references | null: false, foreign key: true    |
 
@@ -55,8 +52,7 @@
 
 | Column              | Type       | Options                           |
 |---------------------|------------|-----------------------------------|
-| id                  | bigint     | null: false, primary key          |
-| purchase            | bigint     | null: false, foreign key: true    |
+| purchase            | references | null: false, foreign key: true    |
 | post_code           | string     | null: false                       |
 | region_id           | integer    | null: false                       |
 | city                | string     | null: false                       |
