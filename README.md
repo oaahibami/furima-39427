@@ -25,29 +25,18 @@
 | id                  | bigint     | null: false, primary key          |
 | name                | string     | null: false                       |
 | description         | text       | null: false                       |
-| category_id         | integer    | null: false                       |
-| condition_id        | integer    | null: false                       |
+| category            | integer    | null: false                       |
+| condition           | integer    | null: false                       |
 | shipping_fee_id     | integer    | null: false                       |
 | shipping_day_id     | integer    | null: false                       |
-| region_id           | integer    | null: false                       |
-| user_id             | references | null: false, foreign key: true    |
+| region              | integer    | null: false                       |
+| user                | references | null: false, foreign key: true    |
 | price               | integer    | null: false                       |
 
 
 ### Association
 - belongs_to :user
 - has_one :purchase
-
-## Regionsテーブル
-
-| Column            | Type    | Options                           |
-|-------------------|---------|-----------------------------------|
-| id                | bigint  | null: false, primary key          |
-| region            | integer | null: false                       |
-
-### Association
-- has_many :item
-- has_many :order
 
 ## Purchasesテーブル
 
@@ -67,14 +56,13 @@
 | Column              | Type       | Options                           |
 |---------------------|------------|-----------------------------------|
 | id                  | bigint     | null: false, primary key          |
-| user_id             | bigint     | null: false, foreign key: true    |
-| item_id             | bigint     | null: false, foreign key: true    |
-| post_code           | string     | null: false,                      |
-| region_id           | integer    | null: false,                      |
-| city                | string     | null: false,                      |
-| street_address      | string     | null: false,                      |
+| purchase            | bigint     | null: false, foreign key: true    |
+| post_code           | string     | null: false                       |
+| region_id           | integer    | null: false                       |
+| city                | string     | null: false                       |
+| street_address      | string     | null: false                       |
 | building_name       | string     |                                   |
-| phone_number        | string     | null: false,                      |
+| phone_number        | string     | null: false                       |
 
 ### Association
 - belongs_to :purchase
