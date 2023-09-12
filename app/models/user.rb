@@ -1,15 +1,17 @@
 class User < ApplicationRecord
+  VALID_JAPANESE_NAME_REGEX = /\A[ぁ-んァ-ン一-龥]+\z/.freeze
+  KATAKANA_REGEX = /\A[ァ-ヶー－]+\z/.freeze
+  PASSWORD_REGEX = /\A(?=.*?[a-z])(?=.*?[\d])[a-z\d]+\z/i.freeze
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
-  validates :last_name, presence: true
-  validates :first_name, presence: true
-  validates :last_name_kana, presence: true, format: { with: /\A[ァ-ヶー－]+\z/ }
-  validates :first_name_kana, presence: true, format: { with: /\A[ァ-ヶー－]+\z/ }
+  validates :last_name, presence: true, format: { with: VALID_JAPANESE_NAME_REGEX }
+  validates :first_name, presence: true, format: { with: VALID_JAPANESE_NAME_REGEX }
+  validates :last_name_kana, presence: true, format: { with: KATAKANA_REGEX }
+  validates :first_name_kana, presence: true, format: { with: KATAKANA_REGEX }
   validates :date_of_birth, presence: true
   validates :nickname, presence:true
-  PASSWORD_REGEX = /\A(?=.*?[a-z])(?=.*?[\d])[a-z\d]+\z/i.freeze
   validates_format_of :password, with: PASSWORD_REGEX, message: "is invalid. Include both letters and numbers"
 end
