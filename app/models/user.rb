@@ -1,5 +1,5 @@
 class User < ApplicationRecord
-  VALID_JAPANESE_NAME_REGEX = /\A[ぁ-んァ-ヶ一-龥々]+\z/.freeze
+  VALID_JAPANESE_NAME_REGEX = /\A[ぁ-んァ-ヶ一-龥々ー]+\z/.freeze
   KATAKANA_REGEX = /\A[ァ-ヶー－]+\z/.freeze
   PASSWORD_REGEX = /\A(?=.*?[a-z])(?=.*?[\d])[a-z\d]+\z/i.freeze
   # Include default devise modules. Others available are:
