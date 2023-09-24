@@ -10,11 +10,6 @@ class Item < ApplicationRecord
 
   validates :name, presence: true
   validates :description, presence: true
-  validates :category, presence: true
-  validates :condition, presence: true
-  validates :shipping_fee, presence: true
-  validates :region, presence: true
-  validates :shipping_day, presence: true
   validates :image, presence: true
 
   validates :category_id, numericality: { other_than: 1  , message: "can't be blank"}
