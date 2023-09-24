@@ -6,8 +6,6 @@ document.addEventListener('DOMContentLoaded', function () {
   // 販売価格が変更されたときの処理
   document.addEventListener('input', function () {
     const price = document.getElementById('item-price').value; // 販売価格を数値
-    console.log(price)
-    console.log(document.getElementById('item-price'))
     const fee = Math.floor(price * 0.1); // 販売手数料（10%）
     const profit = Math.floor(price - fee); // 販売利益
 
