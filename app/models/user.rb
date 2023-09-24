@@ -14,4 +14,6 @@ class User < ApplicationRecord
   validates :date_of_birth, presence: true
   validates :nickname, presence:true
   validates_format_of :password, with: PASSWORD_REGEX, message: "is invalid. Include both letters and numbers"
+
+  has_many :items
 end
