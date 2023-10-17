@@ -9,7 +9,7 @@ class PurchaseOrder
     validates :region_id, numericality: {other_than: 1, message: "can't be blank"}
     validates :city
     validates :street_address
-    validates :phone_number, format: { with: /\A\d{11}\z/, message: 'is valid. Input only number' }
+    validates :phone_number, format: { with: /\A\d{10,11}\z/, message: 'is valid. Input only number' }
     validates :token
   end
     validates :phone_number, format: { with: /\A\d{11}\z/, message: 'is too short' }
